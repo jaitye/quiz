@@ -9,6 +9,7 @@ var models = require('../models/models.js');
 
 // Autoload - factoriza el código si ruta incluye :quizId
 exports.load = function(req, res, next, quizId) {
+  console.log("Ejecuto autoload para quizId: " + quizId);
   models.Quiz.findById(quizId).then(
     function(quiz) {
       if (quiz) {
@@ -97,4 +98,11 @@ exports.update = function(req, res) {
       }  // Redirección HTTP (URL relativo) lista de preguntas
     }
   );
+};
+
+// DELETE /quizes/:id
+exports.destroy = function(req, res) {
+  req.quiz.destroy().then(function() {
+    res.redirect('/quizes');
+  });
 };
