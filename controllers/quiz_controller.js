@@ -30,7 +30,7 @@ exports.index = function(req, res) {
     function(quizes) {
       res.render('quizes/index.ejs', { quizes: quizes, errors: []});
     }
-  ).catch(function(error){next(error)});
+  )
 };
 
 // GET /quizes/:id
