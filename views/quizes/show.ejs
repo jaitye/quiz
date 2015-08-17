@@ -12,7 +12,7 @@
   <%if (quiz.Comments[index].publicado || session.user) { %>
      <p>- <%=quiz.Comments[index].texto%>
        <% if (session.user && !quiz.Comments[index].publicado) { %>
-         <a href="/quizes/<%=quiz.id %>/comments/<%=quiz.Comments[index].id%>/publish"><button>Publicar</button></a>
+         <a href="/quizes/<%=quiz.id %>/comments/<%=quiz.Comments[index].id%>/publish"><button>Publicar comentario</button></a>
        <% } %>
      </p>
   <% } %>
