@@ -15,7 +15,9 @@
   </tr>
 <% } %>
 </table>
-<a href="/quizes/new"><button type="button">Crear pregunta</button></a>
+<% if (session.user) { %>
+    <a href="/quizes/new"><button type="button">Crear pregunta</button></a>
+<% } %>
 <form method="get" action="/quizes">
   Introduzca un texto para buscar las preguntas que lo contengan: <p>
   <input type="text" name="search" value="Buscar"/>
