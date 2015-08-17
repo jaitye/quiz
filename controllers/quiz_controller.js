@@ -28,11 +28,23 @@ exports.load = function(req, res, next, quizId) {
 
 // GET /quizes
 exports.index = function(req, res) {
-  models.Quiz.findAll().then(
-    function(quizes) {
-      res.render('quizes/index.ejs', { quizes: quizes, errors: []});
-    }
-  )
+  var search = req.query.search;
+  var order = "pregunta ASC";
+  if (!search) {
+    search = "";
+    order = "";
+  }
+  search = "%" + search + "%";
+  search = search.replace(" ", "%");
+  console.log(search);
+  models.Quiz.findAll({
+            where: ["pregunta like ?", search],
+            order: order 
+          }).then(
+      function(quizes) {
+        res.render('quizes/index.ejs', { quizes: quizes, errors: []});
+      }
+    )
 };
 
 // GET /quizes/:id
