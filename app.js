@@ -50,8 +50,9 @@ app.use(function(req, res, next) {
       next();
     } else {
       if (req.session.last_req + timeout < date.getTime()) {
+        delete req.session.last_req;
         delete req.session.user;
-        res.redirect(req.session.redir.toString());
+        res.redirect("/");
       } else {
         req.session.last_req = date.getTime();
         next();
